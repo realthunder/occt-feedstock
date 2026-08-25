@@ -17,4 +17,4 @@ channel_targets:
 
 variant:
   - novtk
-  - all  #[not ppc64le]
+  - all
