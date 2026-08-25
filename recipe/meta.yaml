@@ -17,9 +17,19 @@ package:
 source:
   # The realthunder OCCT fork: upstream V8_0_1 plus the fork's kernel
   # work, branch LinkVibe-801.  Pinned by commit rather than branch so
-  # the build is reproducible; bump the hash to pick up new fork work.
-  git_url: https://github.com/realthunder/OCCT.git
-  git_rev: e51a0cab3364daca3e085bfe0a3f173603e6cd05  # LinkVibe-801
+  # the build is reproducible; bump the URL and the sha256 together to
+  # pick up new fork work.
+  #
+  # A GitHub archive of that commit rather than git_url/git_rev: conda-build
+  # answers a git source with a full `git clone --mirror`, and this fork is
+  # 227 MB of history across 97 tags.  The Unix runners absorb that; the
+  # Windows ones do not -- both win_64 jobs of run 32801141274 sat on
+  # "Cloning into bare repository" for 2h59m without reaching the compile.
+  # The archive is 60 MB, unpacks in seconds, and is the form conda-forge's
+  # own occt recipe uses.  Nothing here reads the GIT_* variables a git
+  # source would have set.
+  url: https://github.com/realthunder/OCCT/archive/e51a0cab3364daca3e085bfe0a3f173603e6cd05.tar.gz
+  sha256: 1868ec456de99e50f94fdce588bd6265ecdf082f9f6c60775bf0a169faadbd30
   patches:
     # conda-forge's patch; verified to apply to the fork tree, which
     # does not touch that CMake region.
