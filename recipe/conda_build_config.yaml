@@ -1,3 +1,20 @@
+# Where the build resolves deps from, and where the artifact is
+# labelled for.  Kept here rather than only in the rendered .ci_support
+# files so a `conda smithy rerender` cannot reset them (the same
+# arrangement as freecad-rt-feedstock and smesh-feedstock).
+#
+# channel_sources deliberately does NOT list realthunder.  CI builds
+# with strict channel priority, which takes a package only from the
+# highest-priority channel carrying any version of it -- and the
+# realthunder channel carries a vtk (an old 9.2.6 qt build), which
+# would exclude conda-forge's pinned vtk outright and make the `all`
+# variant unsatisfiable.  Nothing occt builds against comes from
+# realthunder, so conda-forge is the right source for everything.
+channel_sources:
+  - conda-forge
+channel_targets:
+  - realthunder main
+
 variant:
   - novtk
   - all  #[not ppc64le]
