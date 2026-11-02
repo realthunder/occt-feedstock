@@ -1,10 +1,10 @@
 {% set name = "occt" %}
 {% set version = "8.0.1" %}
-# Base 1, one above conda-forge's 0: with the variant offsets this
-# yields novtk_*_101 / all_*_201, so a realthunder build is
-# distinguishable from (and preferred over) conda-forge's 100/200 at
-# equal channel priority.
-{% set build = 1 %}
+# Base above conda-forge's 0: with the variant offsets this yields
+# novtk_*_102 / all_*_202, so a realthunder build is distinguishable from
+# (and preferred over) conda-forge's 100/200 at equal channel priority.
+# Bump it with the source URL: the version stays 8.0.1 while the fork moves.
+{% set build = 2 %}
 
 {% set build = build + 100 %}   # [variant == "novtk"]
 {% set build = build + 200 %}   # [variant == "all"]
@@ -28,8 +28,8 @@ source:
   # The archive is 60 MB, unpacks in seconds, and is the form conda-forge's
   # own occt recipe uses.  Nothing here reads the GIT_* variables a git
   # source would have set.
-  url: https://github.com/realthunder/OCCT/archive/e51a0cab3364daca3e085bfe0a3f173603e6cd05.tar.gz
-  sha256: 1868ec456de99e50f94fdce588bd6265ecdf082f9f6c60775bf0a169faadbd30
+  url: https://github.com/realthunder/OCCT/archive/acd24006fa5d37cf610452be8658e1955b77f47b.tar.gz
+  sha256: 2298f39fa05f7ff042996e74d63f1986fa254e752696f71f6664fecff14065c7
   patches:
     # conda-forge's patch; verified to apply to the fork tree, which
     # does not touch that CMake region.
